@@ -38,36 +38,21 @@
             content: '';
             position: absolute;
             bottom: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 80px;
             height: 10px;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10'%3E%3Cpath d='M0 5 Q 25 0, 50 5 T 100 5' stroke='%23d4af37' stroke-width='1.5' fill='none'/%3E%3Cpath d='M0 8 Q 25 3, 50 8 T 100 8' stroke='%23d4af37' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-size: contain;
         }
-        .hero-title-underline {
-             position: relative;
-            display: inline-block;
-            padding-bottom: 1.5rem;
-        }
-        .hero-title-underline::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 120px;
-            height: 15px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10'%3E%3Cpath d='M0 5 Q 25 0, 50 5 T 100 5' stroke='%23d4af37' stroke-width='1.5' fill='none'/%3E%3Cpath d='M0 8 Q 25 3, 50 8 T 100 8' stroke='%23d4af37' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
-        .subtle-bg-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        .hero-bg-human {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=1923&auto=format&fit=crop');
+        .hero-bg-image {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581362933706-27d70b4a4c6a?q=80&w=1974&auto=format&fit=crop');
             background-size: cover;
-            background-position: center 40%;
+            background-position: center;
+        }
+        .bg-custom-gold {
+            background-color: #d3900d;
         }
     </style>
 </head>
@@ -88,13 +73,9 @@
             
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#home" class="hover:text-brand-gold transition-colors">Home</a>
-                <a href="#story" class="hover:text-brand-gold transition-colors">Philip's Story</a>
+                <a href="#story" class="hover:text-brand-gold transition-colors">About</a>
                 <a href="#services" class="hover:text-brand-gold transition-colors">Services</a>
-                <a href="#donate" class="hover:text-brand-gold transition-colors">Donate</a>
                 <a href="#contact" class="hover:text-brand-gold transition-colors">Contact</a>
-                <button class="text-gray-300 hover:text-brand-gold transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                 </button>
                  <a href="#contact" class="btn-gold px-5 py-2 rounded-full text-sm font-semibold">Book a Session</a>
             </div>
 
@@ -108,9 +89,8 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden mt-4 bg-gray-900 rounded-lg shadow-lg">
             <a href="#home" class="block py-3 px-4 text-base hover:bg-gray-800">Home</a>
-            <a href="#story" class="block py-3 px-4 text-base hover:bg-gray-800">Philip's Story</a>
+            <a href="#story" class="block py-3 px-4 text-base hover:bg-gray-800">About</a>
             <a href="#services" class="block py-3 px-4 text-base hover:bg-gray-800">Services</a>
-            <a href="#donate" class="block py-3 px-4 text-base hover:bg-gray-800">Donate</a>
             <a href="#contact" class="block py-3 px-4 text-base hover:bg-gray-800">Contact</a>
             <a href="#contact" class="block py-3 px-4 text-base text-brand-gold font-semibold hover:bg-gray-800">Book a Session</a>
         </div>
@@ -120,12 +100,11 @@
     <main>
 
         <!-- Home Section -->
-        <section id="home" class="h-screen hero-bg-human text-white relative flex items-center justify-start text-left">
+        <section id="home" class="h-screen bg-brand-dark text-white relative flex items-center justify-center text-center">
             <canvas id="hero-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
-            <div class="z-10 p-8 md:p-16 max-w-2xl">
-                <h1 class="font-cursive text-8xl md:text-9xl text-brand-gold leading-none hero-title-underline">Catalyst</h1>
-                <h2 class="font-poppins font-light text-2xl md:text-3xl mt-4 tracking-widest uppercase">Engineering Miracles</h2>
-                <p class="mt-6 text-lg text-gray-300">Collapse timelines and accelerate miraculous results through value-based manifestation. It's time to unlock your true purpose with integrity, passion, and joy.</p>
+            <div class="z-10 p-4">
+                <h1 class="font-cursive text-7xl md:text-8xl text-brand-gold leading-none title-underline">Engineering Miracles</h1>
+                <p class="mt-8 max-w-2xl mx-auto text-gray-300">Collapse timelines and accelerate miraculous results through value-based manifestation. It's time to unlock your true purpose with integrity, passion, and joy.</p>
                 <a href="#contact" class="mt-8 inline-block btn-gold px-8 py-3 rounded-full font-bold text-lg">Begin Your Transformation</a>
             </div>
         </section>
@@ -136,34 +115,37 @@
                 <h2 class="font-cursive text-6xl text-brand-gold title-underline">Miraculous Results</h2>
                 <p class="font-serif text-xl mt-2 mb-12 text-gray-600">Hear from those who have transformed their reality.</p>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-lg relative overflow-hidden">
-                        <span class="font-serif text-9xl text-brand-gold opacity-20 absolute -top-4 -left-4">“</span>
-                        <p class="text-gray-600 italic relative z-10">"Working with Philip was a turning point. I didn't just achieve my goals; I accelerated my success while finding more joy and meaning in my work."</p>
-                        <p class="font-semibold mt-4 relative z-10 text-gray-800">- Alex R, Entrepreneur</p>
+                    <div class="bg-custom-gold p-10 rounded-lg text-white text-left shadow-lg">
+                        <span class="font-serif text-6xl text-white opacity-50">“</span>
+                        <p class="text-xl italic mt-[-2rem]">"Philip's approach completely transformed my business mindset. The alignment work we did together unlocked opportunities I never saw before. My revenue tripled within 6 months."</p>
+                        <p class="font-bold text-2xl mt-6">Sarah Mitchell</p>
+                        <p class="text-sm">CEO, Digital Marketing Agency</p>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-lg relative overflow-hidden">
-                        <span class="font-serif text-9xl text-brand-gold opacity-20 absolute -top-4 -left-4">“</span>
-                        <p class="text-gray-600 italic relative z-10">"The Catalyst method helped me collapse timelines. What I thought would take five years, I manifested in one. This is true efficiency and alignment."</p>
-                        <p class="font-semibold mt-4 relative z-10 text-gray-800">- Jessica L, Consultant</p>
+                    <div class="bg-custom-gold p-10 rounded-lg text-white text-left shadow-lg">
+                        <span class="font-serif text-6xl text-white opacity-50">“</span>
+                        <p class="text-xl italic mt-[-2rem]">"The Catalyst method helped me collapse timelines. What I thought would take five years, I manifested in one. This is true efficiency and alignment in action."</p>
+                        <p class="font-bold text-2xl mt-6">Jessica Lane</p>
+                        <p class="text-sm">Management Consultant</p>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-lg relative overflow-hidden">
-                        <span class="font-serif text-9xl text-brand-gold opacity-20 absolute -top-4 -left-4">“</span>
-                        <p class="text-gray-600 italic relative z-10">"I found my purpose and passion again. The focus on integrity and core values created a foundation for success that feels effortless and fun."</p>
-                        <p class="font-semibold mt-4 relative z-10 text-gray-800">- Michael B, Spiritual Seeker</p>
+                    <div class="bg-custom-gold p-10 rounded-lg text-white text-left shadow-lg">
+                        <span class="font-serif text-6xl text-white opacity-50">“</span>
+                        <p class="text-xl italic mt-[-2rem]">"I found my purpose and passion again. The focus on integrity and core values created a foundation for success that feels effortless and fun. A truly miraculous experience."</p>
+                        <p class="font-bold text-2xl mt-6">Michael B.</p>
+                        <p class="text-sm">Spiritual Seeker</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Philip's Story Section -->
-        <section id="story" class="py-20 md:py-32 bg-white subtle-bg-pattern fade-in-section">
+        <section id="story" class="py-20 md:py-32 bg-brand-dark text-white fade-in-section">
             <div class="container mx-auto px-6 md:px-16">
                 <div class="max-w-3xl mx-auto text-center">
                     <h4 class="font-cursive text-5xl text-brand-gold title-underline">Philip's Story</h4>
-                    <p class="text-gray-700 my-6">I help Leaders, Entrepreneurs, and Spiritual seekers find deep purpose and manifest their goals through mindset transformation, ancient wisdom, and aligned core values.</p>
-                    <p class="text-gray-700">After transforming my own life, I now empower others to do the same. Catalyst's holistic approach focuses on the entire being – body, soul, and spirit. When there's true alignment with your values, manifesting your goals becomes miraculously easy.</p>
-                    <div class="mt-8 border-t border-gray-200 pt-6">
-                        <h5 class="font-serif text-2xl text-gray-800 mb-4">My Philosophy</h5>
+                    <p class="text-gray-300 my-6">I help Leaders, Entrepreneurs, and Spiritual seekers find deep purpose and manifest their goals through mindset transformation, ancient wisdom, and aligned core values.</p>
+                    <p class="text-gray-300">After transforming my own life, I now empower others to do the same. Catalyst's holistic approach focuses on the entire being – body, soul, and spirit. When there's true alignment with your values, manifesting your goals becomes miraculously easy.</p>
+                    <div class="mt-8 border-t border-gray-700 pt-6">
+                        <h5 class="font-serif text-2xl text-white mb-4">My Philosophy</h5>
                         <ul class="space-y-3 text-left">
                             <li class="flex items-start">
                                 <svg class="w-5 h-5 text-brand-gold mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -224,13 +206,13 @@
                 <p class="font-serif text-xl mt-2 mb-16">Manifest Through True Alignment</p>
                 
                 <div class="grid md:grid-cols-2 gap-12 text-left">
-                    <div class="bg-brand-beige p-8 rounded-lg shadow-lg">
-                        <h3 class="font-serif text-3xl text-brand-gold title-underline">1:1 Manifestation Coaching</h3>
+                    <div class="bg-custom-gold p-10 rounded-lg text-white shadow-lg">
+                        <h3 class="font-serif text-3xl title-underline">1:1 Manifestation Coaching</h3>
                         <p class="my-6">A deeply personalized journey to accelerate your results. We focus on optimizing your mindset, aligning with your core values of integrity and purpose, and collapsing timelines to manifest your goals with ease, fun, and joy.</p>
                         <a href="#contact" class="btn-outline-gold px-6 py-2 rounded-full font-semibold">Book a Discovery Call</a>
                     </div>
-                    <div class="bg-brand-beige p-8 rounded-lg shadow-lg">
-                        <h3 class="font-serif text-3xl text-brand-gold title-underline">Consulting & Keynotes</h3>
+                    <div class="bg-custom-gold p-10 rounded-lg text-white shadow-lg">
+                        <h3 class="font-serif text-3xl title-underline">Consulting & Keynotes</h3>
                         <p class="my-6">Bring the power of value-based manifestation to your organization. My keynotes and consulting services are designed to increase productivity and purpose, fostering a culture of efficiency and passion that leads to miraculous results.</p>
                         <a href="#contact" class="btn-outline-gold px-6 py-2 rounded-full font-semibold">Inquire About Speaking</a>
                     </div>
@@ -281,204 +263,189 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // --- Mobile Menu ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        window.onload = function() {
+            // --- Mobile Menu ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
 
-        // --- Header Scroll Effect ---
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        });
-
-        // --- Animated Hero Background ---
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        const mouse = new THREE.Vector2();
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-        });
-        
-        // Two Line Waves
-        const lineMaterial = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.7 });
-        
-        const points1 = [];
-        const points2 = [];
-        const segments = 100;
-        for (let i = 0; i <= segments; i++) {
-            const x = (i / segments) * 20 - 10;
-            points1.push(new THREE.Vector3(x, 0, 0));
-            points2.push(new THREE.Vector3(x, 0, 0));
-        }
-
-        const geometry1 = new THREE.BufferGeometry().setFromPoints(points1);
-        const geometry2 = new THREE.BufferGeometry().setFromPoints(points2);
-
-        const line1 = new THREE.Line(geometry1, lineMaterial);
-        line1.position.y = -2.5;
-        scene.add(line1);
-
-        const line2 = new THREE.Line(geometry2, lineMaterial);
-        line2.position.y = -3.0;
-        scene.add(line2);
-
-
-        camera.position.z = 5;
-
-        const clock = new THREE.Clock();
-
-        function animate() {
-            requestAnimationFrame(animate);
-            const elapsedTime = clock.getElapsedTime();
-            
-            // Animate waves
-            const positions1 = line1.geometry.attributes.position;
-            const positions2 = line2.geometry.attributes.position;
-
-            for (let i = 0; i < positions1.count; i++) {
-                const x = positions1.getX(i);
-                const y = Math.sin(x * 1.5 + elapsedTime) * 0.2;
-                positions1.setY(i, y);
-            }
-            positions1.needsUpdate = true;
-            
-            for (let i = 0; i < positions2.count; i++) {
-                const x = positions2.getX(i);
-                const y = Math.sin(x * 1.2 + elapsedTime * 1.2) * 0.25;
-                positions2.setY(i, y);
-            }
-            positions2.needsUpdate = true;
-
-
-            camera.position.x += (mouse.x * 0.5 - camera.position.x) * 0.02;
-            camera.position.y += (mouse.y * 0.5 - camera.position.y) * 0.02;
-            camera.lookAt(scene.position);
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        });
-
-        // --- Scroll Animations ---
-        const sections = document.querySelectorAll('.fade-in-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+            // --- Header Scroll Effect ---
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
                 }
             });
-        }, { threshold: 0.1 });
-        sections.forEach(section => { observer.observe(section); });
 
-        // --- Dummy Calendar Generator ---
-        const calendarContainer = document.getElementById('dummy-calendar');
-        if (calendarContainer) {
-            const today = new Date();
-            let currentMonth = today.getMonth();
-            let currentYear = today.getFullYear();
+            // --- Animated Hero Background ---
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
 
-            function renderCalendar(month, year) {
-                calendarContainer.innerHTML = ''; // Clear previous calendar
+            const mouse = new THREE.Vector2();
+            window.addEventListener('mousemove', (event) => {
+                mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+            
+            // Wave
+            const waveGeometry = new THREE.PlaneGeometry(12, 12, 128, 128);
+            const waveMaterial = new THREE.MeshStandardMaterial({
+                color: 0xd4af37,
+                wireframe: false,
+                roughness: 0.1,
+                metalness: 0.9,
+                emissive: 0x996515,
+                emissiveIntensity: 0.4
+            });
+            const wave = new THREE.Mesh(waveGeometry, waveMaterial);
+            wave.rotation.x = -Math.PI / 2.1;
+            wave.position.y = -2.8;
+            scene.add(wave);
 
-                const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-                const firstDay = new Date(year, month).getDay();
-                const daysInMonth = 32 - new Date(year, month, 32).getDate();
+            camera.position.z = 5;
 
-                // Header
-                let header = document.createElement('div');
-                header.className = 'flex justify-between items-center mb-4';
-                header.innerHTML = `
-                    <button id="prev-month" class="p-2 rounded-full hover:bg-gray-100">&lt;</button>
-                    <h3 class="font-serif text-xl font-semibold">${monthNames[month]} ${year}</h3>
-                    <button id="next-month" class="p-2 rounded-full hover:bg-gray-100">&gt;</button>
-                `;
-                calendarContainer.appendChild(header);
+            const clock = new THREE.Clock();
 
-                // Days of week
-                let daysGrid = document.createElement('div');
-                daysGrid.className = 'grid grid-cols-7 gap-2 text-center text-sm text-gray-500';
-                days.forEach(day => {
-                    let dayEl = document.createElement('div');
-                    dayEl.textContent = day;
-                    daysGrid.appendChild(dayEl);
-                });
-                calendarContainer.appendChild(daysGrid);
-
-                // Dates grid
-                let datesGrid = document.createElement('div');
-                datesGrid.className = 'grid grid-cols-7 gap-2 mt-2';
+            function animate() {
+                requestAnimationFrame(animate);
+                const elapsedTime = clock.getElapsedTime();
                 
-                for (let i = 0; i < firstDay; i++) {
-                    let emptyCell = document.createElement('div');
-                    datesGrid.appendChild(emptyCell);
+                // Animate wave
+                const vertices = wave.geometry.attributes.position.array;
+                for (let i = 0; i < vertices.length; i += 3) {
+                    const x = vertices[i];
+                    const y = vertices[i + 1];
+                    const waveX = Math.sin(x * 1.5 + elapsedTime) * 0.023; 
+                    const waveY = Math.sin(y * 1.5 + elapsedTime) * 0.023; 
+                    vertices[i + 2] = waveX + waveY;
                 }
+                wave.geometry.attributes.position.needsUpdate = true;
 
-                for (let i = 1; i <= daysInMonth; i++) {
-                    let dateCell = document.createElement('button');
-                    dateCell.className = 'text-center p-2 rounded-full hover:bg-brand-gold hover:text-white transition-colors';
-                    dateCell.textContent = i;
-                    if (i === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                        dateCell.className += ' bg-brand-dark text-white';
-                    }
-                    datesGrid.appendChild(dateCell);
-                }
-                calendarContainer.appendChild(datesGrid);
-                
-                // Time slots
-                let timeSlots = document.createElement('div');
-                timeSlots.className = 'mt-6 border-t pt-4';
-                timeSlots.innerHTML = `
-                    <h4 class="font-serif text-lg mb-4">Available Times for <span class="text-brand-gold">${monthNames[month]} ${today.getDate()}</span></h4>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        <button class="btn-outline-gold w-full py-2 rounded-lg">09:00 AM</button>
-                        <button class="btn-outline-gold w-full py-2 rounded-lg">10:00 AM</button>
-                        <button class="btn-outline-gold w-full py-2 rounded-lg bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed" disabled>11:00 AM</button>
-                        <button class="btn-outline-gold w-full py-2 rounded-lg">02:00 PM</button>
-                        <button class="btn-outline-gold w-full py-2 rounded-lg">03:00 PM</button>
-                        <button class="btn-outline-gold w-full py-2 rounded-lg">04:00 PM</button>
-                    </div>
-                `;
-                calendarContainer.appendChild(timeSlots);
-                
-                document.getElementById('prev-month').addEventListener('click', () => {
-                    currentMonth--;
-                    if (currentMonth < 0) {
-                        currentMonth = 11;
-                        currentYear--;
-                    }
-                    renderCalendar(currentMonth, currentYear);
-                });
-                
-                document.getElementById('next-month').addEventListener('click', () => {
-                    currentMonth++;
-                    if (currentMonth > 11) {
-                        currentMonth = 0;
-                        currentYear++;
-                    }
-                    renderCalendar(currentMonth, currentYear);
-                });
+                camera.position.x += (mouse.x * 0.5 - camera.position.x) * 0.02;
+                camera.position.y += (mouse.y * 0.5 - camera.position.y) * 0.02;
+                camera.lookAt(scene.position);
+                renderer.render(scene, camera);
             }
+            animate();
 
-            renderCalendar(currentMonth, currentYear);
+            window.addEventListener('resize', () => {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+            });
+
+            // --- Scroll Animations ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => { observer.observe(section); });
+
+            // --- Dummy Calendar Generator ---
+            const calendarContainer = document.getElementById('dummy-calendar');
+            if (calendarContainer) {
+                const today = new Date();
+                let currentMonth = today.getMonth();
+                let currentYear = today.getFullYear();
+
+                function renderCalendar(month, year) {
+                    calendarContainer.innerHTML = ''; // Clear previous calendar
+
+                    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+                    const firstDay = new Date(year, month).getDay();
+                    const daysInMonth = 32 - new Date(year, month, 32).getDate();
+
+                    // Header
+                    let header = document.createElement('div');
+                    header.className = 'flex justify-between items-center mb-4';
+                    header.innerHTML = `
+                        <button id="prev-month" class="p-2 rounded-full hover:bg-gray-100">&lt;</button>
+                        <h3 class="font-serif text-xl font-semibold">${monthNames[month]} ${year}</h3>
+                        <button id="next-month" class="p-2 rounded-full hover:bg-gray-100">&gt;</button>
+                    `;
+                    calendarContainer.appendChild(header);
+
+                    // Days of week
+                    let daysGrid = document.createElement('div');
+                    daysGrid.className = 'grid grid-cols-7 gap-2 text-center text-sm text-gray-500';
+                    days.forEach(day => {
+                        let dayEl = document.createElement('div');
+                        dayEl.textContent = day;
+                        daysGrid.appendChild(dayEl);
+                    });
+                    calendarContainer.appendChild(daysGrid);
+
+                    // Dates grid
+                    let datesGrid = document.createElement('div');
+                    datesGrid.className = 'grid grid-cols-7 gap-2 mt-2';
+                    
+                    for (let i = 0; i < firstDay; i++) {
+                        let emptyCell = document.createElement('div');
+                        datesGrid.appendChild(emptyCell);
+                    }
+
+                    for (let i = 1; i <= daysInMonth; i++) {
+                        let dateCell = document.createElement('button');
+                        dateCell.className = 'text-center p-2 rounded-full hover:bg-brand-gold hover:text-white transition-colors';
+                        dateCell.textContent = i;
+                        if (i === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                            dateCell.className += ' bg-brand-dark text-white';
+                        }
+                        datesGrid.appendChild(dateCell);
+                    }
+                    calendarContainer.appendChild(datesGrid);
+                    
+                    // Time slots
+                    let timeSlots = document.createElement('div');
+                    timeSlots.className = 'mt-6 border-t pt-4';
+                    timeSlots.innerHTML = `
+                        <h4 class="font-serif text-lg mb-4">Available Times for <span class="text-brand-gold">${monthNames[month]} ${today.getDate()}</span></h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <button class="btn-outline-gold w-full py-2 rounded-lg">09:00 AM</button>
+                            <button class="btn-outline-gold w-full py-2 rounded-lg">10:00 AM</button>
+                            <button class="btn-outline-gold w-full py-2 rounded-lg bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed" disabled>11:00 AM</button>
+                            <button class="btn-outline-gold w-full py-2 rounded-lg">02:00 PM</button>
+                            <button class="btn-outline-gold w-full py-2 rounded-lg">03:00 PM</button>
+                            <button class="btn-outline-gold w-full py-2 rounded-lg">04:00 PM</button>
+                        </div>
+                    `;
+                    calendarContainer.appendChild(timeSlots);
+                    
+                    document.getElementById('prev-month').addEventListener('click', () => {
+                        currentMonth--;
+                        if (currentMonth < 0) {
+                            currentMonth = 11;
+                            currentYear--;
+                        }
+                        renderCalendar(currentMonth, currentYear);
+                    });
+                    
+                    document.getElementById('next-month').addEventListener('click', () => {
+                        currentMonth++;
+                        if (currentMonth > 11) {
+                            currentMonth = 0;
+                            currentYear++;
+                        }
+                        renderCalendar(currentMonth, currentYear);
+                    });
+                }
+
+                renderCalendar(currentMonth, currentYear);
+            }
         }
-
     </script>
 </body>
 </html>
