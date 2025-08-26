@@ -102,8 +102,7 @@
     <main>
 
         <!-- Home Section -->
-        <section id="home" class="h-screen hero-bg-human text-white relative overflow-hidden flex items-center justify-center text-center">
-            <canvas id="hero-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+        <section id="home" class="h-screen hero-bg-human text-white relative flex items-center justify-center text-center">
             <div class="z-10 p-4">
                 <h1 class="font-cursive text-8xl md:text-9xl text-brand-gold leading-none">Catalyst</h1>
                 <h2 class="font-cinzel text-3xl md:text-5xl mt-4 tracking-[0.3em] uppercase">Engineering Miracles</h2>
@@ -279,7 +278,6 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         // --- Mobile Menu ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -296,66 +294,6 @@
             } else {
                 header.classList.remove('header-scrolled');
             }
-        });
-
-        // --- Animated Hero Background ---
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        const mouse = new THREE.Vector2();
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-        });
-        
-        // Wave
-        const waveGeometry = new THREE.PlaneGeometry(12, 12, 128, 128);
-        const waveMaterial = new THREE.MeshStandardMaterial({
-            color: 0xd4af37,
-            wireframe: false,
-            roughness: 0.1,
-            metalness: 0.9,
-            emissive: 0x996515,
-            emissiveIntensity: 0.4
-        });
-        const wave = new THREE.Mesh(waveGeometry, waveMaterial);
-        wave.rotation.x = -Math.PI / 2.1;
-        wave.position.y = -2.8; // Lowered the wave even more
-        scene.add(wave);
-
-
-        camera.position.z = 5;
-
-        const clock = new THREE.Clock();
-
-        function animate() {
-            requestAnimationFrame(animate);
-            const elapsedTime = clock.getElapsedTime();
-            
-            // Animate wave
-            const vertices = wave.geometry.attributes.position.array;
-            for (let i = 0; i < vertices.length; i += 3) {
-                const x = vertices[i];
-                const y = vertices[i + 1];
-                const waveX = Math.sin(x * 1.5 + elapsedTime) * 0.023; // Reduced wave height to be very subtle
-                const waveY = Math.sin(y * 1.5 + elapsedTime) * 0.023; // Reduced wave height to be very subtle
-                vertices[i + 2] = waveX + waveY;
-            }
-            wave.geometry.attributes.position.needsUpdate = true;
-
-            camera.position.x += (mouse.x * 0.5 - camera.position.x) * 0.02;
-            camera.position.y += (mouse.y * 0.5 - camera.position.y) * 0.02;
-            camera.lookAt(scene.position);
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
         });
 
         // --- Scroll Animations ---
